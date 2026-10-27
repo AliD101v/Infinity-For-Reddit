@@ -94,6 +94,7 @@ import ml.docilealligator.infinityforreddit.bottomsheetfragments.UrlMenuBottomSh
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.NavigationWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivityViewSubredditDetailBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeInboxCountEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeNSFWEvent;
 import ml.docilealligator.infinityforreddit.events.GoBackToMainPageEvent;
@@ -1178,7 +1179,7 @@ public class ViewSubredditDetailActivity extends BaseActivity implements SortTyp
         });
         binding.viewPagerViewSubredditDetailActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewSubredditDetailActivity.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
-        new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, (tab, position) -> {
+        new TabLayoutMediator(binding.tabLayoutViewSubredditDetailActivity, binding.viewPagerViewSubredditDetailActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
             switch (position) {
                 case 0:
                     tab.setText(R.string.posts);

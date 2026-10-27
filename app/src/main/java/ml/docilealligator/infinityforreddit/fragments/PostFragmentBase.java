@@ -62,6 +62,7 @@ import ml.docilealligator.infinityforreddit.asynctasks.LoadUserData;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.AdjustableTouchSlopItemTouchHelper;
 import ml.docilealligator.infinityforreddit.customviews.LinearLayoutManagerBugFixed;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeAutoplayNsfwVideosEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeCompactLayoutToolbarHiddenByDefaultEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeDataSavingModeEvent;
@@ -194,9 +195,9 @@ public abstract class PostFragmentBase extends Fragment {
                         incrementCurrentPosition();
                         smoothScroller.setTargetPosition(getCurrentPosition());
                         if (mLinearLayoutManager != null) {
-                            mLinearLayoutManager.startSmoothScroll(smoothScroller);
+                            EInk.startSmoothScroll(mLinearLayoutManager, smoothScroller);
                         } else {
-                            mStaggeredGridLayoutManager.startSmoothScroll(smoothScroller);
+                            EInk.startSmoothScroll(mStaggeredGridLayoutManager, smoothScroller);
                         }
                     }
                 }
@@ -375,6 +376,7 @@ public abstract class PostFragmentBase extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ViewCompat.requestApplyInsets(view);
+        EInk.setUpScrollingList(getPostRecyclerView(), mCustomThemeWrapper.getSecondaryTextColor());
     }
 
     @Override

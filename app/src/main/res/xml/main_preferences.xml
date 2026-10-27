@@ -19,6 +19,11 @@
         app:fragment="ml.docilealligator.infinityforreddit.settings.ThemePreferenceFragment" />
 
     <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreferenceWithBackground
+        app:title="@string/settings_eink_title"
+        app:icon="@drawable/ic_e_ink_day_night_24dp"
+        app:fragment="ml.docilealligator.infinityforreddit.eink.EInkPreferenceFragment" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreferenceWithBackground
         app:title="@string/settigns_video_title"
         android:icon="@drawable/ic_video_day_night_24dp"
         app:fragment="ml.docilealligator.infinityforreddit.settings.VideoPreferenceFragment" />

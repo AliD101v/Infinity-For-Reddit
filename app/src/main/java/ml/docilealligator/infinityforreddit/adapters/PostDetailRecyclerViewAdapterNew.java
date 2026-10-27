@@ -109,6 +109,7 @@ import ml.docilealligator.infinityforreddit.databinding.ItemPostDetailTextBindin
 import ml.docilealligator.infinityforreddit.databinding.ItemPostDetailVideoAndGifPreviewBinding;
 import ml.docilealligator.infinityforreddit.databinding.ItemPostDetailVideoAutoplayBinding;
 import ml.docilealligator.infinityforreddit.databinding.ItemPostDetailVideoAutoplayLegacyControllerBinding;
+import ml.docilealligator.infinityforreddit.eink.GalleryNavigation;
 import ml.docilealligator.infinityforreddit.fragments.ViewPostDetailFragmentNew;
 import ml.docilealligator.infinityforreddit.managers.VideoMuteManager;
 import ml.docilealligator.infinityforreddit.markdown.CustomMarkwonAdapter;
@@ -2674,7 +2675,7 @@ public class PostDetailRecyclerViewAdapterNew extends RecyclerView.Adapter<Recyc
                         new PostGalleryGridLayoutItemDecoration(mActivity, R.dimen.staggeredLayoutManagerItemOffset, 2);
                 binding.galleryRecyclerViewItemPostDetailGallery.addItemDecoration(itemDecoration);
             } else {
-                layoutManager = new LinearLayoutManagerBugFixed(mActivity, RecyclerView.HORIZONTAL, false);
+                layoutManager = new GalleryNavigation.InlineGalleryLayoutManager(mActivity);
             }
             binding.galleryRecyclerViewItemPostDetailGallery.setLayoutManager(layoutManager);
             binding.galleryRecyclerViewItemPostDetailGallery.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -2741,8 +2742,12 @@ public class PostDetailRecyclerViewAdapterNew extends RecyclerView.Adapter<Recyc
                             break;
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_CANCEL:
+                            if (e.getActionMasked() == MotionEvent.ACTION_UP && dragged) {
+                                GalleryNavigation.onInlineGallerySwipe(rv, e.getRawX() - downX, e.getRawY() - downY);
+                            }
                             if (e.getActionMasked() == MotionEvent.ACTION_UP && !dragged) {
-                                if (System.currentTimeMillis() - downTime < longClickThreshold) {
+                                if (System.currentTimeMillis() - downTime < longClickThreshold
+                                        && !GalleryNavigation.onInlineGalleryTap(rv, e)) {
                                     int position = getBindingAdapterPosition();
                                     if (position >= 0) {
                                         if (mPost != null) {

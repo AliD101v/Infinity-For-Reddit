@@ -28,8 +28,6 @@ import androidx.paging.LoadState;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -48,6 +46,7 @@ import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 import ml.docilealligator.infinityforreddit.FetchPostFilterAndConcatenatedSubredditNames;
 import ml.docilealligator.infinityforreddit.Infinity;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.moderation.PostModerationActionHandler;
 import ml.docilealligator.infinityforreddit.R;
 import ml.docilealligator.infinityforreddit.RecyclerViewContentScrollingInterface;
@@ -324,7 +323,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else if (postType == PostType.SUBREDDIT) {
@@ -395,7 +394,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else if (postType == PostType.MULTIREDDIT) {
@@ -470,7 +469,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else if (postType == PostType.USER) {
@@ -538,7 +537,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else if (postType == PostType.ANONYMOUS_FRONT_PAGE) {
@@ -593,7 +592,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else if (postType == PostType.ANONYMOUS_MULTIREDDIT) {
@@ -656,7 +655,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         } else {
@@ -710,7 +709,7 @@ public class PostFragment extends PostFragmentBase implements FragmentCommunicat
 
                 @Override
                 public void delayTransition() {
-                    TransitionManager.beginDelayedTransition(binding.recyclerViewPostFragment, new AutoTransition());
+                    EInk.beginDelayedTransition(binding.recyclerViewPostFragment);
                 }
             });
         }

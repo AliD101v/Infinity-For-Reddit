@@ -35,6 +35,7 @@ import ml.docilealligator.infinityforreddit.Infinity;
 import ml.docilealligator.infinityforreddit.R;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivitySettingsBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.RecreateActivityEvent;
 import ml.docilealligator.infinityforreddit.settings.AboutPreferenceFragment;
 import ml.docilealligator.infinityforreddit.settings.AdvancedPreferenceFragment;
@@ -194,7 +195,8 @@ public class SettingsActivity extends BaseActivity implements
         fragment.setTargetFragment(caller, 0);
 
         getSupportFragmentManager().beginTransaction()
-                .setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left, R.anim.enter_from_left, R.anim.exit_to_right)
+                .setCustomAnimations(EInk.fragmentAnimation(R.anim.enter_from_right), EInk.fragmentAnimation(R.anim.exit_to_left),
+                        EInk.fragmentAnimation(R.anim.enter_from_left), EInk.fragmentAnimation(R.anim.exit_to_right))
                 .replace(R.id.frame_layout_settings_activity, fragment)
                 .addToBackStack(null)
                 .commit();

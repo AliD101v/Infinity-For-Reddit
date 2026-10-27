@@ -56,6 +56,7 @@ import ml.docilealligator.infinityforreddit.customtheme.CustomTheme;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customtheme.OnlineCustomThemeMetadata;
 import ml.docilealligator.infinityforreddit.databinding.ActivityCustomThemeListingBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.RecreateActivityEvent;
 import ml.docilealligator.infinityforreddit.fragments.CustomThemeListingFragment;
 import ml.docilealligator.infinityforreddit.utils.CustomThemeSharedPreferencesUtils;
@@ -167,7 +168,7 @@ public class CustomThemeListingActivity extends BaseActivity implements
         sectionsPagerAdapter = new SectionsPagerAdapter(this);
         binding.viewPager2CustomizeThemeListingActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPager2CustomizeThemeListingActivity.setUserInputEnabled(!sharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
-        new TabLayoutMediator(binding.tabLayoutCustomizeThemeListingActivity, binding.viewPager2CustomizeThemeListingActivity, (tab, position) -> {
+        new TabLayoutMediator(binding.tabLayoutCustomizeThemeListingActivity, binding.viewPager2CustomizeThemeListingActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
             switch (position) {
                 case 0:
                     Utils.setTitleWithCustomFontToTab(typeface, tab, getString(R.string.local));

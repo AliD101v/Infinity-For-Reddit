@@ -10,6 +10,7 @@ import android.graphics.Color;
 import java.util.ArrayList;
 
 import ml.docilealligator.infinityforreddit.R;
+import ml.docilealligator.infinityforreddit.eink.EInkTheme;
 import ml.docilealligator.infinityforreddit.utils.CustomThemeSharedPreferencesUtils;
 
 public class CustomThemeWrapper {
@@ -492,6 +493,8 @@ public class CustomThemeWrapper {
             return getDracula(context);
         } else if (name.equals(context.getString(R.string.theme_name_calm_pastel))) {
             return getCalmPastel(context);
+        } else if (name.equals(context.getString(R.string.theme_name_e_ink))) {
+            return EInkTheme.create(context);
         } else {
             return getIndigo(context);
         }
@@ -510,6 +513,7 @@ public class CustomThemeWrapper {
         customThemes.add(getRedAmoled(context));
         customThemes.add(getDracula(context));
         customThemes.add(getCalmPastel(context));
+        customThemes.add(EInkTheme.create(context));
         return customThemes;
     }
 

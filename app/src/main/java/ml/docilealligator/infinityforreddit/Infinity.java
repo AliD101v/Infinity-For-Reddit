@@ -40,6 +40,7 @@ import ml.docilealligator.infinityforreddit.broadcastreceivers.NetworkWifiStatus
 import ml.docilealligator.infinityforreddit.broadcastreceivers.WallpaperChangeReceiver;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.database.RedditDataRoomDatabase;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeAppLockEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeNetworkStatusEvent;
 import ml.docilealligator.infinityforreddit.events.ToggleSecureModeEvent;
@@ -100,6 +101,8 @@ public class Infinity extends Application implements LifecycleObserver {
                 .create(this);
 
         mAppComponent.inject(this);
+
+        EInk.init(this, mSharedPreferences);
 
         appLock = mSecuritySharedPreferences.getBoolean(SharedPreferencesUtils.APP_LOCK, false);
         appLockTimeout = Long.parseLong(mSecuritySharedPreferences.getString(SharedPreferencesUtils.APP_LOCK_TIMEOUT, "600000"));

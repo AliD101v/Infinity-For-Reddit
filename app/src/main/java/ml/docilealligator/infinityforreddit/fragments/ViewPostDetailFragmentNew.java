@@ -42,8 +42,6 @@ import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.RequestManager;
@@ -65,6 +63,7 @@ import javax.inject.Named;
 import javax.inject.Provider;
 
 import kotlin.Unit;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.moderation.CommentModerationActionHandler;
 import ml.docilealligator.infinityforreddit.Infinity;
 import ml.docilealligator.infinityforreddit.comment.PostDetailCommentsCache;
@@ -243,6 +242,8 @@ public class ViewPostDetailFragmentNew extends Fragment implements FragmentCommu
         } else {
             mSeparatePostAndComments = true;
         }
+        EInk.setUpScrollingList(binding.postDetailRecyclerViewViewPostDetailFragment, mCustomThemeWrapper.getSecondaryTextColor());
+        EInk.setUpScrollingList(mCommentsRecyclerView, mCustomThemeWrapper.getSecondaryTextColor());
 
         if (mActivity.isImmersiveInterfaceRespectForcedEdgeToEdge()) {
             ViewCompat.setOnApplyWindowInsetsListener(binding.getRoot(), new OnApplyWindowInsetsListener() {
@@ -1262,7 +1263,7 @@ public class ViewPostDetailFragmentNew extends Fragment implements FragmentCommu
 
         mSmoothScroller.setTargetPosition(absoluteParentPosition);
         mIsSmoothScrolling = true;
-        recyclerView.getLayoutManager().startSmoothScroll(mSmoothScroller);
+        EInk.startSmoothScroll(recyclerView.getLayoutManager(), mSmoothScroller);
     }
 
     public void scrollToPreviousParentComment() {
@@ -1291,7 +1292,7 @@ public class ViewPostDetailFragmentNew extends Fragment implements FragmentCommu
 
         mSmoothScroller.setTargetPosition(absoluteParentPosition);
         mIsSmoothScrolling = true;
-        recyclerView.getLayoutManager().startSmoothScroll(mSmoothScroller);
+        EInk.startSmoothScroll(recyclerView.getLayoutManager(), mSmoothScroller);
     }
 
     public void scrollToParentComment(int position, int currentDepth) {
@@ -1313,11 +1314,11 @@ public class ViewPostDetailFragmentNew extends Fragment implements FragmentCommu
 
         mSmoothScroller.setTargetPosition(absoluteParentPosition);
         mIsSmoothScrolling = true;
-        layoutManager.startSmoothScroll(mSmoothScroller);
+        EInk.startSmoothScroll(layoutManager, mSmoothScroller);
     }
 
     public void delayTransition() {
-        TransitionManager.beginDelayedTransition((mCommentsRecyclerView == null ? binding.postDetailRecyclerViewViewPostDetailFragment : mCommentsRecyclerView), new AutoTransition());
+        EInk.beginDelayedTransition((mCommentsRecyclerView == null ? binding.postDetailRecyclerViewViewPostDetailFragment : mCommentsRecyclerView));
     }
 
     public boolean getIsNsfwSubreddit() {

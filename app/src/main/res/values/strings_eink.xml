@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="theme_name_e_ink">E-ink</string>
+
+    <string name="settings_eink_title">E-ink</string>
+    <string name="settings_eink_apply_preset_title">Apply e-ink preset</string>
+    <string name="settings_eink_apply_preset_summary">Turn on the settings recommended for e-ink displays in one step</string>
+
+    <string name="settings_eink_category_animations_title">Animations</string>
+    <string name="settings_eink_disable_animations_title">Disable animations</string>
+    <string name="settings_eink_disable_animations_summary">Open screens, drawers, comment threads, tabs and images instantly instead of animating them</string>
+
+    <string name="settings_eink_category_gallery_title">Galleries</string>
+    <string name="settings_eink_gallery_swipe_navigation_title">Swipe to change image</string>
+    <string name="settings_eink_gallery_swipe_navigation_summary">With animations disabled, a swipe jumps straight to the next image instead of dragging it</string>
+    <string name="settings_eink_gallery_tap_navigation_title">Tap edges to change image</string>
+    <string name="settings_eink_gallery_tap_navigation_summary">Tap the left or right quarter of an image to go to the previous or next one</string>
+
+    <string name="settings_eink_category_page_turning_title">Page turning</string>
+    <string name="settings_eink_page_turn_tap_zones_title">Page-turn tap zones</string>
+    <string name="settings_eink_page_turn_tap_zones_summary">Tap the upper or lower half of a strip along the screen edge to scroll posts and comments by one page</string>
+    <string name="settings_eink_page_turn_tap_zone_side_title">Tap zone side</string>
+    <string name="settings_eink_page_turn_tap_zone_width_title">Tap zone width</string>
+    <string name="settings_eink_page_turn_show_tap_zones_title">Show tap zones</string>
+    <string name="settings_eink_page_turn_show_tap_zones_summary">Mark the tap zones with a thin line and arrows</string>
+
+    <string name="eink_tap_zone_side_right">Right</string>
+    <string name="eink_tap_zone_side_left">Left</string>
+    <string name="eink_tap_zone_side_both">Both</string>
+    <string name="eink_tap_zone_width_narrow">Narrow</string>
+    <string name="eink_tap_zone_width_medium">Medium</string>
+    <string name="eink_tap_zone_width_wide">Wide</string>
+
+    <string name="eink_preset_dialog_title">Apply e-ink preset?</string>
+    <string name="eink_preset_detected_dialog_title">E-ink display detected</string>
+    <string name="eink_preset_dialog_message">This disables animations, turns on page-turn tap zones and tap navigation in galleries, applies the E-ink theme and a larger Atkinson Hyperlegible font, stops video autoplay, keeps the toolbar, bottom bar and comment navigation button in place, and turns off swipe actions, swiping back and swiping between tabs.\n\nYou can change any of these afterwards. To be able to undo it all at once, back up your settings first (Settings → Advanced → Backup Settings).</string>
+    <string name="eink_preset_apply">Apply</string>
+    <string name="eink_preset_applied">E-ink preset applied</string>
+</resources>

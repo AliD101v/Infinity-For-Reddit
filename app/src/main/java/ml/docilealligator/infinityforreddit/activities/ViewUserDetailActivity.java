@@ -90,6 +90,7 @@ import ml.docilealligator.infinityforreddit.comment.Comment;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.NavigationWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivityViewUserDetailBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeInboxCountEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeNSFWEvent;
 import ml.docilealligator.infinityforreddit.events.GoBackToMainPageEvent;
@@ -788,7 +789,7 @@ public class ViewUserDetailActivity extends BaseActivity implements SortTypeSele
     private void initializeViewPager() {
         binding.viewPagerViewUserDetailActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewUserDetailActivity.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
-        new TabLayoutMediator(binding.tabLayoutViewUserDetailActivity, binding.viewPagerViewUserDetailActivity, (tab, position) -> {
+        new TabLayoutMediator(binding.tabLayoutViewUserDetailActivity, binding.viewPagerViewUserDetailActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
             switch (position) {
                 case 0:
                     tab.setText(R.string.posts);

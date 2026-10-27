@@ -97,6 +97,7 @@ import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.LinearLayoutManagerBugFixed;
 import ml.docilealligator.infinityforreddit.customviews.NavigationWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivityMainBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeDisableSwipingBetweenTabsEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeHideFabInPostFeedEvent;
 import ml.docilealligator.infinityforreddit.events.ChangeHideKarmaEvent;
@@ -386,6 +387,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
                 this, binding.drawerLayout, binding.includedAppBar.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         toggle.getDrawerArrowDrawable().setColor(mCustomThemeWrapper.getToolbarPrimaryTextAndIconColor());
         binding.drawerLayout.addDrawerListener(toggle);
+        EInk.setUpDrawerToggle(binding.drawerLayout, toggle, binding.includedAppBar.toolbar);
         binding.drawerLayout.addDrawerListener(new DrawerLayout.SimpleDrawerListener() {
             @Override
             public void onDrawerClosed(View drawerView) {
@@ -431,7 +433,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
             @Override
             public void handleOnBackPressed() {
                 if (binding.drawerLayout.isOpen()) {
-                    binding.drawerLayout.close();
+                    EInk.closeDrawer(binding.drawerLayout);
                 } else {
                     if (mBackButtonAction == SharedPreferencesUtils.MAIN_PAGE_BACK_BUTTON_ACTION_CONFIRM_EXIT) {
                         new MaterialAlertDialogBuilder(MainActivity.this, R.style.MaterialAlertDialogTheme)
@@ -445,7 +447,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
                                 .setNegativeButton(R.string.no, null)
                                 .show();
                     } else if (mBackButtonAction == SharedPreferencesUtils.MAIN_PAGE_BACK_BUTTON_ACTION_OPEN_NAVIGATION_DRAWER) {
-                        binding.drawerLayout.open();
+                        EInk.openDrawer(binding.drawerLayout);
                     } else {
                         setEnabled(false);
                         triggerBackPress();
@@ -1006,7 +1008,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
                         if (intent != null) {
                             startActivity(intent);
                         }
-                        binding.drawerLayout.closeDrawers();
+                        EInk.closeDrawer(binding.drawerLayout);
                     }
 
                     @Override
@@ -1056,7 +1058,7 @@ public class MainActivity extends BaseActivity implements SortTypeSelectionCallb
             } else {
                 binding.includedAppBar.tabLayoutMainActivity.setTabMode(TabLayout.MODE_FIXED);
             }
-            new TabLayoutMediator(binding.includedAppBar.tabLayoutMainActivity, binding.includedAppBar.viewPagerMainActivity, (tab, position) -> {
+            new TabLayoutMediator(binding.includedAppBar.tabLayoutMainActivity, binding.includedAppBar.viewPagerMainActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
                 switch (position) {
                     case 0:
                         Utils.setTitleWithCustomFontToTab(typeface, tab, mMainActivityTabsSharedPreferences.getString((accountName.equals(Account.ANONYMOUS_ACCOUNT) ? "" : accountName) + SharedPreferencesUtils.MAIN_PAGE_TAB_1_TITLE, getString(R.string.home)));

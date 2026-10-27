@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreference
+        app:key="eink_apply_preset"
+        app:title="@string/settings_eink_apply_preset_title"
+        app:summary="@string/settings_eink_apply_preset_summary" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreferenceCategory
+        app:title="@string/settings_eink_category_animations_title" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontSwitchPreference
+        app:defaultValue="false"
+        app:key="eink_disable_animations"
+        app:title="@string/settings_eink_disable_animations_title"
+        app:summary="@string/settings_eink_disable_animations_summary" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreferenceCategory
+        app:title="@string/settings_eink_category_gallery_title" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontSwitchPreference
+        app:defaultValue="true"
+        app:key="eink_gallery_swipe_navigation"
+        app:title="@string/settings_eink_gallery_swipe_navigation_title"
+        app:summary="@string/settings_eink_gallery_swipe_navigation_summary" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontSwitchPreference
+        app:defaultValue="false"
+        app:key="eink_gallery_tap_navigation"
+        app:title="@string/settings_eink_gallery_tap_navigation_title"
+        app:summary="@string/settings_eink_gallery_tap_navigation_summary" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontPreferenceCategory
+        app:title="@string/settings_eink_category_page_turning_title" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontSwitchPreference
+        app:defaultValue="false"
+        app:key="eink_page_turn_tap_zones"
+        app:title="@string/settings_eink_page_turn_tap_zones_title"
+        app:summary="@string/settings_eink_page_turn_tap_zones_summary" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontListPreference
+        app:defaultValue="right"
+        app:dependency="eink_page_turn_tap_zones"
+        app:entries="@array/settings_eink_tap_zone_side"
+        app:entryValues="@array/settings_eink_tap_zone_side_values"
+        app:key="eink_page_turn_tap_zone_side"
+        app:title="@string/settings_eink_page_turn_tap_zone_side_title"
+        app:useSimpleSummaryProvider="true" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontListPreference
+        app:defaultValue="72"
+        app:dependency="eink_page_turn_tap_zones"
+        app:entries="@array/settings_eink_tap_zone_width"
+        app:entryValues="@array/settings_eink_tap_zone_width_values"
+        app:key="eink_page_turn_tap_zone_width"
+        app:title="@string/settings_eink_page_turn_tap_zone_width_title"
+        app:useSimpleSummaryProvider="true" />
+
+    <ml.docilealligator.infinityforreddit.customviews.preference.CustomFontSwitchPreference
+        app:defaultValue="true"
+        app:dependency="eink_page_turn_tap_zones"
+        app:key="eink_page_turn_show_tap_zones"
+        app:title="@string/settings_eink_page_turn_show_tap_zones_title"
+        app:summary="@string/settings_eink_page_turn_show_tap_zones_summary" />
+
+</PreferenceScreen>

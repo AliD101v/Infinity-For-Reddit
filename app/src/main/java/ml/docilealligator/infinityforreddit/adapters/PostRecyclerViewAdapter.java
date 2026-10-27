@@ -118,6 +118,7 @@ import ml.docilealligator.infinityforreddit.databinding.ItemPostTextBinding;
 import ml.docilealligator.infinityforreddit.databinding.ItemPostVideoTypeAutoplayBinding;
 import ml.docilealligator.infinityforreddit.databinding.ItemPostVideoTypeAutoplayLegacyControllerBinding;
 import ml.docilealligator.infinityforreddit.databinding.ItemPostWithPreviewBinding;
+import ml.docilealligator.infinityforreddit.eink.GalleryNavigation;
 import ml.docilealligator.infinityforreddit.events.PostUpdateEventToPostDetailFragment;
 import ml.docilealligator.infinityforreddit.fragments.PostFragmentBase;
 import ml.docilealligator.infinityforreddit.post.FetchStreamableVideo;
@@ -1076,7 +1077,7 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                         ((PostBaseGalleryTypeViewHolder) holder).imageIndexTextView.setVisibility(View.GONE);
                     } else {
                         if (!(layoutManager instanceof LinearLayoutManagerBugFixed)) {
-                            layoutManager = new LinearLayoutManagerBugFixed(mActivity, RecyclerView.HORIZONTAL, false);
+                            layoutManager = new GalleryNavigation.InlineGalleryLayoutManager(mActivity);
                             ((PostBaseGalleryTypeViewHolder) holder).galleryRecyclerView.setLayoutManager(layoutManager);
                         }
 
@@ -3921,8 +3922,12 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                             break;
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_CANCEL:
+                            if (e.getActionMasked() == MotionEvent.ACTION_UP && dragged) {
+                                GalleryNavigation.onInlineGallerySwipe(rv, e.getRawX() - downX, e.getRawY() - downY);
+                            }
                             if (e.getActionMasked() == MotionEvent.ACTION_UP && !dragged) {
-                                if (System.currentTimeMillis() - downTime < longClickThreshold) {
+                                if (System.currentTimeMillis() - downTime < longClickThreshold
+                                        && !GalleryNavigation.onInlineGalleryTap(rv, e)) {
                                     int position = getBindingAdapterPosition();
                                     if (position >= 0) {
                                         if (post != null) {
@@ -4704,7 +4709,7 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
             recyclerView.setAdapter(adapter);
             new PagerSnapHelper().attachToRecyclerView(recyclerView);
             recyclerView.setRecycledViewPool(mGalleryRecycledViewPool);
-            layoutManager = new LinearLayoutManagerBugFixed(mActivity, RecyclerView.HORIZONTAL, false);
+            layoutManager = new GalleryNavigation.InlineGalleryLayoutManager(mActivity);
             recyclerView.setLayoutManager(layoutManager);
             recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
                 @Override
@@ -4766,9 +4771,12 @@ public class PostRecyclerViewAdapter extends PagingDataAdapter<Post, RecyclerVie
                         case MotionEvent.ACTION_UP:
                         case MotionEvent.ACTION_CANCEL:
                             if (e.getActionMasked() == MotionEvent.ACTION_UP && !dragged) {
-                                if (System.currentTimeMillis() - downTime < longClickThreshold) {
+                                if (System.currentTimeMillis() - downTime < longClickThreshold
+                                        && !GalleryNavigation.onInlineGalleryTap(rv, e)) {
                                     onClick();
                                 }
+                            } else if (e.getActionMasked() == MotionEvent.ACTION_UP) {
+                                GalleryNavigation.onInlineGallerySwipe(rv, e.getRawX() - downX, e.getRawY() - downY);
                             }
                             downX = 0;
                             downY = 0;

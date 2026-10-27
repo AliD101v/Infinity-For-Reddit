@@ -39,6 +39,7 @@ import ml.docilealligator.infinityforreddit.database.RedditDataRoomDatabase;
 import ml.docilealligator.infinityforreddit.bottomsheetfragments.PostLayoutBottomSheetFragment;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivityAccountSavedThingBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeNSFWEvent;
 import ml.docilealligator.infinityforreddit.events.SwitchAccountEvent;
 import ml.docilealligator.infinityforreddit.fragments.CommentsListingFragment;
@@ -185,7 +186,7 @@ public class AccountSavedThingActivity extends BaseActivity implements ActivityT
         sectionsPagerAdapter = new SectionsPagerAdapter(this);
         binding.accountSavedThingViewPager2.setAdapter(sectionsPagerAdapter);
         binding.accountSavedThingViewPager2.setUserInputEnabled(!mSharedPreferences.getBoolean(SharedPreferencesUtils.DISABLE_SWIPING_BETWEEN_TABS, false));
-        new TabLayoutMediator(binding.accountSavedThingTabLayout, binding.accountSavedThingViewPager2, (tab, position) -> {
+        new TabLayoutMediator(binding.accountSavedThingTabLayout, binding.accountSavedThingViewPager2, true, EInk.smoothPageChanges(), (tab, position) -> {
             switch (position) {
                 case 0:
                     Utils.setTitleWithCustomFontToTab(typeface, tab, getString(R.string.posts));

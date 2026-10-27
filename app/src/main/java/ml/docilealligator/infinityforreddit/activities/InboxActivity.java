@@ -47,6 +47,7 @@ import ml.docilealligator.infinityforreddit.apis.RedditAPI;
 import ml.docilealligator.infinityforreddit.asynctasks.AccountManagement;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivityInboxBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeInboxCountEvent;
 import ml.docilealligator.infinityforreddit.events.PassPrivateMessageEvent;
 import ml.docilealligator.infinityforreddit.events.PassPrivateMessageIndexEvent;
@@ -288,7 +289,7 @@ public class InboxActivity extends BaseActivity implements ActivityToolbarInterf
             }
         });
         binding.viewPagerInboxActivity.setAdapter(sectionsPagerAdapter);
-        new TabLayoutMediator(binding.tabLayoutInboxActivity, binding.viewPagerInboxActivity, (tab, position) -> {
+        new TabLayoutMediator(binding.tabLayoutInboxActivity, binding.viewPagerInboxActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
             switch (position) {
                 case 0:
                     Utils.setTitleWithCustomFontToTab(typeface, tab, getString(R.string.notifications));

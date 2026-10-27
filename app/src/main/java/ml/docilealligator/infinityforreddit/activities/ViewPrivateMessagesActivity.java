@@ -12,8 +12,6 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.OnApplyWindowInsetsListener;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import com.evernote.android.state.State;
 import com.google.android.material.snackbar.Snackbar;
@@ -36,6 +34,7 @@ import ml.docilealligator.infinityforreddit.asynctasks.LoadUserData;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.customviews.LinearLayoutManagerBugFixed;
 import ml.docilealligator.infinityforreddit.databinding.ActivityViewPrivateMessagesBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.PassPrivateMessageEvent;
 import ml.docilealligator.infinityforreddit.events.PassPrivateMessageIndexEvent;
 import ml.docilealligator.infinityforreddit.events.RepliedToPrivateMessageEvent;
@@ -274,7 +273,7 @@ public class ViewPrivateMessagesActivity extends BaseActivity implements Activit
     }
 
     public void delayTransition() {
-        TransitionManager.beginDelayedTransition(binding.recyclerViewViewPrivateMessagesActivity, new AutoTransition());
+        EInk.beginDelayedTransition(binding.recyclerViewViewPrivateMessagesActivity);
     }
 
     private void goToBottom() {

@@ -57,6 +57,7 @@ import ml.docilealligator.infinityforreddit.bottomsheetfragments.SearchUserAndSu
 import ml.docilealligator.infinityforreddit.bottomsheetfragments.SortTimeBottomSheetFragment;
 import ml.docilealligator.infinityforreddit.customtheme.CustomThemeWrapper;
 import ml.docilealligator.infinityforreddit.databinding.ActivitySearchResultBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeNSFWEvent;
 import ml.docilealligator.infinityforreddit.events.SwitchAccountEvent;
 import ml.docilealligator.infinityforreddit.fragments.FragmentCommunicator;
@@ -287,7 +288,7 @@ public class SearchResultActivity extends BaseActivity implements SortTypeSelect
                 }
             }
         });
-        new TabLayoutMediator(binding.tabLayoutSearchResultActivity, binding.viewPagerSearchResultActivity, (tab, position) -> {
+        new TabLayoutMediator(binding.tabLayoutSearchResultActivity, binding.viewPagerSearchResultActivity, true, EInk.smoothPageChanges(), (tab, position) -> {
             if (mReturnSubredditAndUserName) {
                 if (position == 0) {
                     Utils.setTitleWithCustomFontToTab(typeface, tab, getString(R.string.subreddits));

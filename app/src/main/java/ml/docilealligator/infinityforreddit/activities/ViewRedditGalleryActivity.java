@@ -52,6 +52,7 @@ import ml.docilealligator.infinityforreddit.R;
 import ml.docilealligator.infinityforreddit.SetAsWallpaperCallback;
 import ml.docilealligator.infinityforreddit.WallpaperSetter;
 import ml.docilealligator.infinityforreddit.databinding.ActivityViewRedditGalleryBinding;
+import ml.docilealligator.infinityforreddit.eink.GalleryNavigation;
 import ml.docilealligator.infinityforreddit.events.FinishViewMediaActivityEvent;
 import ml.docilealligator.infinityforreddit.font.ContentFontFamily;
 import ml.docilealligator.infinityforreddit.font.ContentFontStyle;
@@ -229,6 +230,7 @@ public class ViewRedditGalleryActivity extends AppCompatActivity implements SetA
             });
         }
         sectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
+        GalleryNavigation.setUpFullScreenGallery(this, binding.viewPagerViewRedditGalleryActivity, binding.haulerViewViewRedditGalleryActivity);
         binding.viewPagerViewRedditGalleryActivity.setAdapter(sectionsPagerAdapter);
         binding.viewPagerViewRedditGalleryActivity.setOffscreenPageLimit(3);
         if (savedInstanceState == null) {

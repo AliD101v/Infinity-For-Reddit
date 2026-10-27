@@ -77,6 +77,7 @@ import ml.docilealligator.infinityforreddit.bottomsheetfragments.FlairBottomShee
 import ml.docilealligator.infinityforreddit.bottomsheetfragments.ImportantInfoBottomSheetFragment;
 import ml.docilealligator.infinityforreddit.bottomsheetfragments.PostOptionsBottomSheetFragment;
 import ml.docilealligator.infinityforreddit.broadcastreceivers.BootCompletedBroadcastReceiver;
+import ml.docilealligator.infinityforreddit.eink.EInkPreset;
 import ml.docilealligator.infinityforreddit.fragments.CommentsListingFragment;
 import ml.docilealligator.infinityforreddit.fragments.CustomThemeListingFragment;
 import ml.docilealligator.infinityforreddit.fragments.FollowedUsersListingFragment;
@@ -206,6 +207,8 @@ public interface AppComponent {
     void inject(SubredditMultiselectionActivity subredditMultiselectionActivity);
 
     void inject(ThemePreferenceFragment themePreferenceFragment);
+
+    EInkPreset eInkPreset();
 
     void inject(CustomizeThemeActivity customizeThemeActivity);
 

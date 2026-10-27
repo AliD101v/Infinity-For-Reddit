@@ -25,8 +25,6 @@ import androidx.paging.LoadState;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import androidx.transition.AutoTransition;
-import androidx.transition.TransitionManager;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -52,6 +50,7 @@ import ml.docilealligator.infinityforreddit.adapters.PostRecyclerViewAdapter;
 import ml.docilealligator.infinityforreddit.apis.StreamableAPI;
 import ml.docilealligator.infinityforreddit.customviews.LinearLayoutManagerBugFixed;
 import ml.docilealligator.infinityforreddit.databinding.FragmentHistoryPostBinding;
+import ml.docilealligator.infinityforreddit.eink.EInk;
 import ml.docilealligator.infinityforreddit.events.ChangeDefaultPostLayoutEvent;
 import ml.docilealligator.infinityforreddit.events.NeedForPostListFromPostFragmentEvent;
 import ml.docilealligator.infinityforreddit.events.ProvidePostListToViewPostDetailActivityEvent;
@@ -254,7 +253,7 @@ public class HistoryPostFragment extends PostFragmentBase implements FragmentCom
 
             @Override
             public void delayTransition() {
-                TransitionManager.beginDelayedTransition(binding.recyclerViewHistoryPostFragment, new AutoTransition());
+                EInk.beginDelayedTransition(binding.recyclerViewHistoryPostFragment);
             }
         });
 

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="settings_eink_tap_zone_side">
+        <item>@string/eink_tap_zone_side_right</item>
+        <item>@string/eink_tap_zone_side_left</item>
+        <item>@string/eink_tap_zone_side_both</item>
+    </string-array>
+
+    <string-array name="settings_eink_tap_zone_side_values" translatable="false">
+        <item>right</item>
+        <item>left</item>
+        <item>both</item>
+    </string-array>
+
+    <string-array name="settings_eink_tap_zone_width">
+        <item>@string/eink_tap_zone_width_narrow</item>
+        <item>@string/eink_tap_zone_width_medium</item>
+        <item>@string/eink_tap_zone_width_wide</item>
+    </string-array>
+
+    <!-- Width in dp. -->
+    <string-array name="settings_eink_tap_zone_width_values" translatable="false">
+        <item>48</item>
+        <item>72</item>
+        <item>96</item>
+    </string-array>
+</resources>
