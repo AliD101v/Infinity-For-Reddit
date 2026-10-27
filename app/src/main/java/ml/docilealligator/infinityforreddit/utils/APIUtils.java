@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
+import ml.docilealligator.infinityforreddit.BuildConfig;
 import ml.docilealligator.infinityforreddit.account.Account;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -32,17 +33,20 @@ public class APIUtils {
 
     public static final String CLIENT_ID_KEY = "client_id";
     public static final String CLIENT_SECRET_KEY = "client_secret";
-    public static final String CLIENT_ID = "";
+    // Personal API credentials come from .env through BuildConfig (see app/build.gradle). They are deliberately not
+    // compile-time constants: Kotlin inlines constants into its own classes, and incremental builds keep those stale
+    // copies after .env changes.
+    public static final String CLIENT_ID = fromBuildConfig(BuildConfig.REDDIT_CLIENT_ID);
     public static final String IMGUR_CLIENT_ID = "Client-ID cc671794e0ab397";
     public static final String REDGIFS_CLIENT_ID = "1828d0bcc93-15ac-bde6-0005-d2ecbe8daab3";
     public static final String REDGIFS_CLIENT_SECRET = "TJBlw7jRXW65NAGgFBtgZHu97WlzRXHYybK81sZ9dLM=";
-    public static final String GIPHY_GIF_API_KEY = "";
+    public static final String GIPHY_GIF_API_KEY = fromBuildConfig(BuildConfig.GIPHY_GIF_API_KEY);
     public static final String RESPONSE_TYPE_KEY = "response_type";
     public static final String RESPONSE_TYPE = "code";
     public static final String STATE_KEY = "state";
     public static final String STATE = "23ro8xlxvzp4asqd";
     public static final String REDIRECT_URI_KEY = "redirect_uri";
-    public static final String REDIRECT_URI = "infinity://localhost";
+    public static final String REDIRECT_URI = fromBuildConfig(BuildConfig.REDDIT_REDIRECT_URI);
     public static final String DURATION_KEY = "duration";
     public static final String DURATION = "permanent";
     public static final String SCOPE_KEY = "scope";
@@ -52,8 +56,8 @@ public class APIUtils {
     public static final String AUTHORIZATION_KEY = "Authorization";
     public static final String AUTHORIZATION_BASE = "bearer ";
     public static final String USER_AGENT_KEY = "User-Agent";
-    public static final String USER_AGENT = "";
-    public static final String ANONYMOUS_USER_AGENT = "";
+    public static final String USER_AGENT = fromBuildConfig(BuildConfig.REDDIT_USER_AGENT);
+    public static final String ANONYMOUS_USER_AGENT = fromBuildConfig(BuildConfig.REDDIT_USER_AGENT);
     public static final String USERNAME_KEY = "username";
 
     public static final String GRANT_TYPE_KEY = "grant_type";
@@ -129,6 +133,10 @@ public class APIUtils {
     public static final String HOW_NO = "no";
 
     public static final String PLATFORM_KEY = "platform";
+
+    private static String fromBuildConfig(String value) {
+        return value;
+    }
 
     public static Map<String, String> getHttpBasicAuthHeader() {
         Map<String, String> params = new HashMap<>();

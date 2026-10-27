@@ -29,6 +29,9 @@ build/
 # Signing files
 .signing/
 
+# Personal build settings (Reddit API credentials, signing passwords), see .env.example
+.env
+
 # Local configuration file (sdk path, etc)
 local.properties
 
