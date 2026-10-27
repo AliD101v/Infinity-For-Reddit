@@ -251,7 +251,11 @@ class AppAuthLoginActivity : BaseActivity() {
 
     private fun launchAuthTab() {
         getChromeCustomTabPackageName(this)?.let {
-            if (!CustomTabsClient.isAuthTabSupported(this, it)) {
+            // An Auth Tab can only hand a custom-scheme redirect (e.g. infinity://localhost) back to the app. For
+            // http(s) redirect URIs such as http://127.0.0.1, use the WebView login, which intercepts any redirect.
+            val redirectScheme = APIUtils.REDIRECT_URI.toUri().scheme
+            if (!CustomTabsClient.isAuthTabSupported(this, it) || redirectScheme.isNullOrEmpty()
+                || redirectScheme == "http" || redirectScheme == "https") {
                 startActivity(Intent(this, LoginActivity::class.java))
                 finish()
                 return
@@ -267,7 +271,7 @@ class AppAuthLoginActivity : BaseActivity() {
             uriBuilder.appendQueryParameter(APIUtils.SCOPE_KEY, APIUtils.SCOPE)
 
             val authTabIntent = AuthTabIntent.Builder().setEphemeralBrowsingEnabled(true).build()
-            authTabIntent.launch(mLauncher, uriBuilder.build(), "infinity")
+            authTabIntent.launch(mLauncher, uriBuilder.build(), redirectScheme)
         }
     }
 
