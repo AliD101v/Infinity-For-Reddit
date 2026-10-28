@@ -3,6 +3,9 @@
   
 </h1>
 
+> [!NOTE]
+> This is a fork of [Infinity for Reddit](https://github.com/Docile-Alligator/Infinity-For-Reddit). The work done in this fork was developed using AI. The rest of the app is the work of the upstream developers.
+
 <div align="center">
 
 A Reddit client on Android written in Java. It does not have any ads and it features a clean UI and smooth browsing experience
@@ -10,6 +13,20 @@ A Reddit client on Android written in Java. It does not have any ads and it feat
 <img align="right" src="https://raw.githubusercontent.com/Docile-Alligator/Infinity-For-Reddit/master/fastlane/metadata/android/en-US/images/icon.png" width=200>
 
 </div>
+
+### About this fork
+
+This fork adds support for e-ink displays. Everything is under **Settings → E-ink** and off by default, so the app behaves like upstream until you turn it on:
+
+- **Disable animations:** screen transitions, the navigation drawer, comment collapse/expand, tab switching and jumps to a post or comment happen instantly.
+- **E-ink theme:** a high-contrast light theme with black text on pure white, no tinted backgrounds, and dark accents that stay readable on color e-ink.
+- **Gallery navigation:** swipe to change images instantly and/or tap the left or right edge of an image; swipe up or down to close the full-screen viewer.
+- **Page-turn tap zones:** tap a strip along the screen edge to scroll posts and comments one page at a time, for devices without page-turn buttons.
+- **E-ink preset:** applies all of the above in one tap, along with a larger Atkinson Hyperlegible font, no video autoplay and fewer moving parts. It's offered automatically on BOOX devices.
+
+It also builds locally with your own Reddit API key: copy `.env.example` to `.env`, then run `scripts/setup-build-env.sh` and `scripts/build-apk.sh`.
+
+Tested on a BOOX Note Air 4C (Android 13) and a Samsung Galaxy S24 Ultra.
 
 <br>
 
